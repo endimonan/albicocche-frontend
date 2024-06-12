@@ -1,5 +1,10 @@
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import { useState } from "react";
+
+interface UserProps {
+  name: string;
+  age: number;
+}
 
 function App() {
   const [contador, setContador] = useState(0);
@@ -12,9 +17,16 @@ function App() {
     setContador(contador - 1);
   };
 
+  const user = { name: "Alice", age: 30 };
+
   return (
     <>
-      <div style={{ textAlign: "center", margin: "3rem" }}>
+      <div
+        style={{
+          textAlign: "center",
+          margin: "3rem"
+        }}
+      >
         <h1>Counter</h1>
         <p>{contador}</p>
 
@@ -23,7 +35,7 @@ function App() {
             display: "flex",
             justifyContent: "center",
             marginTop: "2rem",
-            gap: "1rem",
+            gap: "1rem"
           }}
         >
           <h3>Botao natural do html</h3>
@@ -36,7 +48,7 @@ function App() {
             display: "flex",
             justifyContent: "center",
             marginTop: "2rem",
-            gap: "1rem",
+            gap: "1rem"
           }}
         >
           <h3>Botao do Material UI</h3>

@@ -1,0 +1,7 @@
+**/node_modules/**
+.eslintignore
+.prettierignore
+package-lock.json
+public
+coverage
+src/vite-env.d.ts

@@ -1,0 +1,13 @@
+node_modules
+.vscode
+coverage
+public
+dist
+*.css
+*.json
+*.svg
+src/vite-env.d.ts
+vite.config.ts
+jest.config.cjs
+jest.setup.js
+```
