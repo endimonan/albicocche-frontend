@@ -1,3 +1,9 @@
+// {
+//     "importOrder": ["^components/(.*)$", "^[./]" ],
+//     "importOrderSeparation": true,
+//     "importOrderSortSpecifiers": true
+// }
+
 {
   "env": {
     "browser": true,

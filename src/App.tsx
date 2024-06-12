@@ -1,11 +1,6 @@
 import Button from "@mui/material/Button";
 import { useState } from "react";
 
-interface UserProps {
-  name: string;
-  age: number;
-}
-
 function App() {
   const [contador, setContador] = useState(0);
 
@@ -16,8 +11,6 @@ function App() {
   const decrementar = () => {
     setContador(contador - 1);
   };
-
-  const user = { name: "Alice", age: 30 };
 
   return (
     <>
