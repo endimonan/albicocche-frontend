@@ -8,7 +8,7 @@
 # Albicocche
 
 ## Descrição
-
+ 
 Albicocche é um projeto web desenvolvido utilizando React, Vite e TypeScript. Este projeto é projetado para ser uma base robusta para aplicações web modernas, com foco em desempenho, modularidade e facilidade de desenvolvimento.
 
 ### Descrição das Pastas e Arquivos
