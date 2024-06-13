@@ -26,6 +26,7 @@
     "@typescript-eslint/triple-slash-reference": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "react/react-in-jsx-scope": "off"
   },
   "settings": {
@@ -34,6 +35,3 @@
     }
   }
 }
-
-
-// react/react-in-jsx-scope
