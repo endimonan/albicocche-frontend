@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import { useState } from "react";
 
-function App() {
+export function App() {
   const [contador, setContador] = useState(0);
 
   const incrementar = () => {
@@ -56,5 +56,3 @@ function App() {
     </>
   );
 }
-
-export default App;
