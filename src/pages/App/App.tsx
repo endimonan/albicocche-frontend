@@ -1,7 +1,9 @@
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function App() {
+  const { t, i18n } = useTranslation();
   const [contador, setContador] = useState(0);
 
   const incrementar = () => {
@@ -12,6 +14,10 @@ export function App() {
     setContador(contador - 1);
   };
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <>
       <div
@@ -20,7 +26,21 @@ export function App() {
           margin: "3rem"
         }}
       >
-        <h1>Counter</h1>
+        <h1>{t("welcome")}</h1>
+
+        <Button variant="outlined" onClick={() => changeLanguage("en")}>
+          English
+        </Button>
+        <Button variant="outlined" onClick={() => changeLanguage("it")}>
+          Italian
+        </Button>
+        <Button variant="outlined" onClick={() => changeLanguage("pt")}>
+          Portuguese
+        </Button>
+
+        <h1 style={{
+          paddingTop: "20rem"
+        }}>Counter</h1>
         <p>{contador}</p>
 
         <div
@@ -33,7 +53,7 @@ export function App() {
         >
           <h3>Botao natural do html</h3>
           <button onClick={incrementar}>Incrementar</button>
-          <button onClick={decrementar}>Decrementar</button>
+          <button onClick={decrementar}>Decrementar</button>B
         </div>
 
         <div
