@@ -1,4 +1,5 @@
-# Definindo a configuração padrão de final de linha
-* text=auto
+# 2010
+*.txt -crlf
 
-# Exceções podem ser adicionadas abaixo para arquivos específicos
+# 2020
+*.txt text eol=lf 
