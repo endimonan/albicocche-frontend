@@ -1,0 +1,4 @@
+# Definindo a configuração padrão de final de linha
+* text=auto
+
+# Exceções podem ser adicionadas abaixo para arquivos específicos
