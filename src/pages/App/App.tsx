@@ -56,8 +56,8 @@ export function App() {
           }}
         >
           <h3>Botao natural do html</h3>
-          <button onClick={incrementar}>Incrementar</button>
-          <button onClick={decrementar}>Decrementar</button>B
+          <button onClick={incrementar}>Colocar ponto</button>
+          <button onClick={decrementar}>Tirar ponto</button>B
         </div>
 
         <div
