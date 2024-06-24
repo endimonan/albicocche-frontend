@@ -38,9 +38,13 @@ export function App() {
           Portuguese
         </Button>
 
-        <h1 style={{
-          paddingTop: "20rem"
-        }}>Counter</h1>
+        <h1
+          style={{
+            paddingTop: "20rem"
+          }}
+        >
+          Counter
+        </h1>
         <p>{contador}</p>
 
         <div
