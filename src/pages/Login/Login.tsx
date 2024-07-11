@@ -1,6 +1,4 @@
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
-  Avatar,
   Box,
   Button,
   Checkbox,
@@ -14,7 +12,7 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import "./Login.css";
+import PeachIcon from "../../assets/peach-fruit-icon.svg";
 import { boxStyles } from "./Login.styles";
 
 function Login() {
@@ -32,11 +30,27 @@ function Login() {
 
   return (
     <>
-      <Container component="main" maxWidth="xs">
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          height: "100vh"
+        }}
+      >
         <Box sx={{ ...boxStyles }}>
-          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Box
+            component="div"
+            sx={{
+              p: 1
+            }}
+          >
+            <svg width="48" height="48" viewBox="0 0 48 48">
+              <PeachIcon />
+            </svg>
+          </Box>
 
           <Typography component="h1" variant="h5">
             {t("signIn")}
