@@ -11,7 +11,7 @@ const AlbicoccheRoutes = () => {
       <Route path="/" element={<App />} />
       <Route path="/login" element={<Login />} />
       <Route path="/login/forgot" element={<Forgot />} />
-      <Route path="/login/singup" element={<Signup />} />
+      <Route path="/login/signup" element={<Signup />} />
     </Routes>
   );
 };

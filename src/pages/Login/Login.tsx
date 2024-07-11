@@ -1,18 +1,29 @@
-import Button from "@mui/material/Button";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Grid,
+  Link,
+  TextField,
+  Typography
+} from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaLock, FaUser } from "react-icons/fa";
 
 import "./Login.css";
+import { boxStyles } from "./Login.styles";
 
 function Login() {
-  const { t, i18n } = useTranslation();
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
+  const { t } = useTranslation();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const submit = (event) => {
+
+  const handleSubmit = (event: any) => {
     event.preventDefault(); //Aqui entra o backend
     alert("Dados sendo enviados" + " - " + username + " -  " + password);
     console.log("Envio de formulário"); //Aqui entra o backend
@@ -21,67 +32,76 @@ function Login() {
 
   return (
     <>
-      <div className="container">
-        <form className="form" onSubmit={submit}>
-          <div>
-            <h1>Join Albicocche</h1>
-          </div>
-          {/* <div id="albicon">
-            <img src="src\assets\peachy.jpg"></img>
-          </div> */}
-          <div className="input">
-            <input
-              type="email"
-              placeholder="E-mail"
+      <Container component="main" maxWidth="xs">
+        <Box sx={{ ...boxStyles }}>
+          <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+
+          <Typography component="h1" variant="h5">
+            {t("signIn")}
+          </Typography>
+
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
               required
-              onChange={(getUser) => setUsername(getUser.target.value)}
+              fullWidth
+              id="email"
+              label={t("emailAddress")}
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={(event) => setUsername(event.target.value)}
             />
-            <FaUser className="icon" />
-          </div>
-          <div className="input">
-            <input
+
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label={t("password")}
               type="password"
-              placeholder="Password"
-              required
-              onChange={(getPass) => setPassword(getPass.target.value)}
+              id="password"
+              autoComplete="current-password"
+              autoFocus
+              onChange={(event) => setPassword(event.target.value)}
             />
-            <FaLock className="icon" />
-          </div>
-          <div className="remember">
-            <label>
-              <input type="checkbox" />
-              Remember me?
-            </label>
-            <a href="login/forgot">Forgot your Passoword?</a>
-          </div>
-          <button className="loginButton" type="submit">
-            LOGIN
-          </button>
-          <div className="registered">
-            <p>
-              Not registered? Click here to <a href="/login/singup">SIGN UP</a>
-            </p>
-          </div>
-        </form>
-      </div>
-      {/* <div
-        style={{
-          textAlign: "center",
-          margin: "9rem",
-          borderRadius: "8px"
-        }}
-      >
-        <h1>{t("welcome")}</h1>
-        <Button variant="outlined" onClick={() => changeLanguage("en")}>
-          English
-        </Button>
-        <Button variant="outlined" onClick={() => changeLanguage("it")}>
-          Italian
-        </Button>
-        <Button variant="outlined" onClick={() => changeLanguage("pt")}>
-          Portuguese
-        </Button>
-      </div> */}
+
+            <FormControlLabel control={<Checkbox />} label={t("rememberMe")} />
+
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              {t("signIn")}
+            </Button>
+
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  {t("forgotPassword")}
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {t("dontHaveAnAccount")}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            mt: 8,
+            mb: 4
+          }}
+        >
+          <Typography variant="body2" color="textSecondary" align="center">
+            {"Albicocche © "}
+            {new Date().getFullYear()}
+            <Link color="inherit" href="https://www.albicocche.com/" />
+          </Typography>
+        </Box>
+      </Container>
     </>
   );
 }
