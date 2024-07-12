@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import i18n from "../i18n";
 import { theme } from "../theme/theme";
+import { AuthProvider } from "./AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -16,16 +17,18 @@ interface WrappedProvidersProps {
 
 const WrappedProviders: React.FC<WrappedProvidersProps> = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <I18nextProvider i18n={i18n}>
-        <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
-            <CssBaseline />
-            {children}
-          </BrowserRouter>
-        </QueryClientProvider>
-      </I18nextProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <I18nextProvider i18n={i18n}>
+          <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+              <CssBaseline />
+              {children}
+            </BrowserRouter>
+          </QueryClientProvider>
+        </I18nextProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 };
 
