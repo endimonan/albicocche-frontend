@@ -10,8 +10,8 @@ const AlbicoccheRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/login/forgot" element={<Forgot />} />
-      <Route path="/login/signup" element={<Signup />} />
+      <Route path="/forgot" element={<Forgot />} />
+      <Route path="/signup" element={<Signup />} />
 
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<App />} />

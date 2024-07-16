@@ -1,8 +1,12 @@
 {
   "signIn": "Entrar",
+  "signUp": "Registrar",
   "emailAddress": "Endereço de e-mail",
   "password": "Senha",
+  "confirmPassword":"confirmar Senha",
   "rememberMe": "Lembrar-me",
   "forgotPassword": "Esqueceu a senha?",
-  "dontHaveAnAccount": "Não tem uma conta?"
+  "dontHaveAnAccount": "Não tem uma conta?",
+  "firstName":"Primeiro Nome",
+  "surname":"Sobrenome"
 }
