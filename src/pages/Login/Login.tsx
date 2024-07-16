@@ -79,7 +79,6 @@ function Login() {
                   type="password"
                   id="password"
                   autoComplete="current-password"
-                  autoFocus
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </Grid>

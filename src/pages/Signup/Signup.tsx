@@ -25,7 +25,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       setPasswordError("Password does not match");
@@ -95,7 +95,6 @@ function Signup() {
                   label={t("surname")}
                   id="surname"
                   type="text"
-                  autoFocus
                   onChange={(event) => setSurname(event.target.value)}
                 />
               </Grid>
@@ -108,7 +107,6 @@ function Signup() {
                   name="email"
                   autoComplete="e-mail"
                   type="email"
-                  autoFocus
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </Grid>
@@ -120,7 +118,6 @@ function Signup() {
                   label={t("password")}
                   id="password"
                   type="password"
-                  autoFocus
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </Grid>
@@ -133,7 +130,6 @@ function Signup() {
                   name="confirmPassword"
                   autoComplete="confirmPassword"
                   type="password"
-                  autoFocus
                   error={passwordError !== ""}
                   helperText={passwordError}
                   onChange={(event) => setConfirmPassword(event.target.value)}
@@ -168,7 +164,6 @@ function Signup() {
           <Typography variant="body2" color="textSecondary" align="center">
             {"Albicocche © "}
             {new Date().getFullYear()}
-            <Link color="inherit" href="https://www.albicocche.com/" />
           </Typography>
         </Box>
       </Container>
