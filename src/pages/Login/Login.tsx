@@ -9,23 +9,33 @@ import {
   TextField,
   Typography
 } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { AuthResponse, LoginCredentials, login } from "../../api/services/auth";
 import PeachIcon from "../../assets/peach-fruit-icon.svg";
 import { boxStyles } from "./Login.styles";
 
 function Login() {
   const { t } = useTranslation();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault(); //Aqui entra o backend
-    alert("Dados sendo enviados" + " - " + username + " -  " + password);
-    console.log("Envio de formulário"); //Aqui entra o backend
-    console.log(username, password); //Aqui entra o backend
+  const mutation = useMutation<AuthResponse, unknown, LoginCredentials>({
+    mutationFn: login,
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.error(error);
+    }
+  });
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    mutation.mutate({ email, password });
   };
 
   return (
@@ -37,7 +47,7 @@ function Login() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          height: "100vh"
+          height: "calc(100vh - 56px);"
         }}
       >
         <Box sx={{ ...boxStyles }}>
@@ -67,7 +77,7 @@ function Login() {
                   name="email"
                   autoComplete="email"
                   autoFocus
-                  onChange={(event) => setUsername(event.target.value)}
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>

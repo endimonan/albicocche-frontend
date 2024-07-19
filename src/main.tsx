@@ -5,10 +5,10 @@ import "@fontsource/roboto/700.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import Navbar from "./components/Navbar.tsx";
 import WrappedProviders from "./context/WrappedProviders.tsx";
 import "./index.css";
 import AlbicoccheRoutes from "./routes/routes.tsx";
-import Navbar from "./components/Navbar.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -16,18 +16,18 @@ interface WrappedProvidersProps {
 
 const WrappedProviders: React.FC<WrappedProvidersProps> = ({ children }) => {
   return (
-    <AuthProvider>
-      <ThemeProviderWrapper>
-        <I18nextProvider i18n={i18n}>
-          <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <ThemeProviderWrapper>
+          <I18nextProvider i18n={i18n}>
             <BrowserRouter>
               <CssBaseline />
               {children}
             </BrowserRouter>
-          </QueryClientProvider>
-        </I18nextProvider>
-      </ThemeProviderWrapper>
-    </AuthProvider>
+          </I18nextProvider>
+        </ThemeProviderWrapper>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 };
 

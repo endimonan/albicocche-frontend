@@ -1,6 +1,6 @@
 import React, { ReactNode, createContext, useContext, useState } from "react";
 
-import api from "../utils/axiosConfig";
+import api from "../api/axiosConfig";
 
 interface AuthContextType {
   isAuthenticated: boolean;
