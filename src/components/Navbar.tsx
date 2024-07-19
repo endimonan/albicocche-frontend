@@ -19,10 +19,9 @@ import { useThemeContext } from "../context/ThemeContext";
 
 const Navbar: React.FC = () => {
   const { toggleColorMode } = useThemeContext();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, handleLogout } = useAuth();
   const navigate = useNavigate();
   const theme = useTheme();
-  console.log("theme", theme);
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -34,26 +33,27 @@ const Navbar: React.FC = () => {
     setAnchorElUser(null);
   };
 
-  const handleLogout = () => {
+  const logout = () => {
     handleCloseUserMenu();
-    logout();
+    handleLogout();
     navigate("/login");
   };
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-          Albicocche
-        </Typography>
-        <Box sx={{ flexGrow: 1 }} />
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Tooltip title="Toggle light/dark mode">
-            <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
-              {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
-            </IconButton>
-          </Tooltip>
-          {isAuthenticated && (
+    isAuthenticated && (
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
+            Albicocche
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Tooltip title="Toggle light/dark mode">
+              <IconButton sx={{ ml: 1 }} onClick={toggleColorMode} color="inherit">
+                {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+              </IconButton>
+            </Tooltip>
+
             <Box sx={{ ml: 2 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -77,13 +77,13 @@ const Navbar: React.FC = () => {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                <MenuItem onClick={logout}>Logout</MenuItem>
               </Menu>
             </Box>
-          )}
-        </Box>
-      </Toolbar>
-    </AppBar>
+          </Box>
+        </Toolbar>
+      </AppBar>
+    )
   );
 };
 
