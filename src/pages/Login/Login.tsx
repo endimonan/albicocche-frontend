@@ -1,26 +1,14 @@
-import {
-  Alert,
-  Box,
-  Button,
-  Checkbox,
-  CircularProgress,
-  Container,
-  Fade,
-  FormControlLabel,
-  Grid,
-  Link,
-  TextField,
-  Typography
-} from "@mui/material";
+import { Alert, Box, Button, Checkbox, CircularProgress, Container, Fade, FormControlLabel, Grid, Link, TextField, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
-import PeachIcon from "../../assets/peach-fruit-icon.svg";
-import { AuthResponse, LoginCredentials, useAuth } from "../../context/AuthContext";
-import { boxStyles } from "./Login.styles";
 import { useNavigate } from "react-router-dom";
+
+import { AuthResponse, LoginCredentials } from "../../api/services/authService";
+import PeachIcon from "../../assets/peach-fruit-icon.svg";
+import { useAuth } from "../../context/AuthContext";
+import { boxStyles } from "./Login.styles";
 
 function Login() {
   const { t } = useTranslation();
@@ -39,8 +27,8 @@ function Login() {
       setShowError(false);
       navigate("/");
     },
-    onError: () => {
-      setError("An error occurred");
+    onError: (error) => {
+      setError(error.message);
       setShowError(true);
       setTimeout(() => {
         setShowError(false);
@@ -61,7 +49,7 @@ function Login() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        height: "calc(100vh - 56px);"
+        height: "100vh"
       }}
     >
       <Box sx={{ ...boxStyles }}>
@@ -115,13 +103,7 @@ function Login() {
 
           <FormControlLabel sx={{ mt: 1 }} control={<Checkbox />} label={t("rememberMe")} />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            disabled={mutation.isPending}
-          >
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={mutation.isPending}>
             {mutation.isPending ? <CircularProgress size={24} /> : t("signIn")}
           </Button>
 
