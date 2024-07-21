@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setIsAuthenticated(true);
       return response;
     } catch (error: any) {
-      if (error.response?.data?.code) {
+      if (error.response.data.code) {
         throw new Error(errorMessages[error.response.data.code] || errorMessages.default);
       }
       throw new Error("Login failed");
