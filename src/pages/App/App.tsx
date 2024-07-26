@@ -2,9 +2,12 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useAuth } from "../../context/AuthContext";
+
 export function App() {
   const { t, i18n } = useTranslation();
   const [contador, setContador] = useState(0);
+  const { handleLogout } = useAuth();
 
   const incrementar = () => {
     setContador(contador + 1);
@@ -36,6 +39,9 @@ export function App() {
         </Button>
         <Button variant="outlined" onClick={() => changeLanguage("pt")}>
           Portuguese
+        </Button>
+        <Button onClick={() => handleLogout} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          Deslogar
         </Button>
 
         <h1

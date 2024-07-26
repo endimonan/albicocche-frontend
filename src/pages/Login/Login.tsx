@@ -12,7 +12,7 @@ import { boxStyles } from "./Login.styles";
 
 function Login() {
   const { t } = useTranslation();
-  const { handleLogin } = useAuth();
+  const { handleLogin, handleLogout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ function Login() {
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
 
-  const mutation = useMutation<AuthResponse, AxiosError, LoginCredentials>({
+  const { mutate, isPending } = useMutation<AuthResponse, AxiosError, LoginCredentials>({
     mutationFn: ({ email, password }) => handleLogin({ email, password }),
     onSuccess: () => {
       setShowError(false);
@@ -38,7 +38,7 @@ function Login() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutation.mutate({ email, password });
+    mutate({ email, password });
   };
 
   return (
@@ -103,10 +103,9 @@ function Login() {
 
           <FormControlLabel sx={{ mt: 1 }} control={<Checkbox />} label={t("rememberMe")} />
 
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={mutation.isPending}>
-            {mutation.isPending ? <CircularProgress size={24} /> : t("signIn")}
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={isPending}>
+            {isPending ? <CircularProgress size={24} /> : t("signIn")}
           </Button>
-
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

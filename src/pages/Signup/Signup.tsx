@@ -1,29 +1,32 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  Container,
-  FormControlLabel,
-  Grid,
-  Link,
-  TextField,
-  Typography
-} from "@mui/material";
+import { Box, Button, Checkbox, Container, FormControlLabel, Grid, Link, TextField, Typography } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
+import { type AxiosError } from "axios";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { type SignUp, type UserResponse, register } from "../../api/services/userService";
 import PeachIcon from "../../assets/peach-fruit-icon.svg";
 import { boxStyles } from "./Signup.styles";
 
 function Signup() {
   const { t } = useTranslation();
 
-  const [firstName, setFirstname] = useState("");
+  const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const { mutate } = useMutation<UserResponse, AxiosError, SignUp>({
+    mutationFn: async ({ name, surname, email, password }) => await register({ name, surname, email, password }),
+    onSuccess: (sucess) => {
+      alert(sucess.message)
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -32,21 +35,7 @@ function Signup() {
       return;
     }
     setPasswordError("");
-    alert(
-      "Dados sendo enviados e Password correto" +
-        " - " +
-        firstName +
-        " -  " +
-        surname +
-        " -  " +
-        password +
-        " -  " +
-        email +
-        " -  " +
-        confirmPassword
-    );
-    console.log("Envio de formulário");
-    console.log(firstName, surname, password, email, confirmPassword);
+    mutate({ name, surname, email, password });
   };
 
   return (
@@ -78,13 +67,13 @@ function Signup() {
                 <TextField
                   required
                   fullWidth
-                  id="firstName"
+                  id="name"
                   label={t("firstName")}
-                  name="firstName"
-                  autoComplete="firstName"
+                  name="name"
+                  autoComplete="name"
                   type="text"
                   autoFocus
-                  onChange={(event) => setFirstname(event.target.value)}
+                  onChange={(event) => setName(event.target.value)}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
@@ -137,11 +126,7 @@ function Signup() {
               </Grid>
             </Grid>
 
-            <FormControlLabel
-              sx={{ mt: 1 }}
-              control={<Checkbox />}
-              label={t("I want to receive updates via email")}
-            />
+            <FormControlLabel sx={{ mt: 1 }} control={<Checkbox />} label={t("I want to receive updates via email")} />
 
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               {t("signIn")}
