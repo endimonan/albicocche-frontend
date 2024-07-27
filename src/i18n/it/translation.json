@@ -1,5 +1,12 @@
 {
-  "welcome": "Benvenuto nella nostra applicazione!",
-  "login": "Accedi",
-  "logout": "Esci"
+  "signIn": "Accedi",
+  "signUp": "Registrati",
+  "emailAddress": "Indirizzo email",
+  "password": "Password",
+  "confirmPassword":"Conferma Password",
+  "rememberMe": "Ricordati di me",
+  "forgotPassword": "Ha dimenticato la password?",
+  "dontHaveAnAccount": "Non hai un account?",
+  "firstName":"Primo Nombre",
+  "surname":"Secondo Nombre"
 }
